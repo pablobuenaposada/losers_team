@@ -15,6 +15,7 @@ class Main:
     # resources
     happiness = INIT_HAPPINESS
     research = INIT_RESEARCH
+    production = INIT_PRODUCTION
 
     # result message
     result = ""
@@ -46,14 +47,14 @@ class Main:
 
     def get_random_event(self):
         event_list = [
-            {"result": "Anarchy", "research_delta": 0,  "happiness_delta": 0, "prodcution_delta": 0},
-            {"result": "Our colony’s engineers go on strike and the production slows down", "research_delta": 0,  "happiness_delta": 0, "prodcution_delta": -RESOURCE_DELTA},
-            {"result": "BBQ day increases heavily the consumption, people are unhappy", "research_delta": 0,  "happiness_delta": -RESOURCE_DELTA, "prodcution_delta": 0},
-            {"result": "Our scientists are ill because bad chemicals leaked in the lab", "research_delta": -RESOURCE_DELTA,  "happiness_delta": 0, "prodcution_delta": 0},
-            {"result": "Severe pests spread throughout the colony, we need immediate action", "research_delta": 0,  "happiness_delta": -RESOURCE_DELTA, "prodcution_delta": 0},
-            {"result": "Recent rainfalls improved the agricultural production, people are very happy with the abundance of food", "research_delta": 0,  "happiness_delta": 0, "prodcution_delta": RESOURCE_DELTA},
-            {"result": "Our researchers just discovered a new resource that can be eaten", "research_delta": RESOURCE_DELTA,  "happiness_delta": RESOURCE_DELTA, "prodcution_delta": RESOURCE_DELTA},
-            {"result": "Thanks to a new discovery, our colony uses less energy", "research_delta": -RESOURCE_DELTA,  "happiness_delta": RESOURCE_DELTA, "prodcution_delta": 0},
+            {"result": "Anarchy", "research_delta": 0,  "happiness_delta": 0, "production_delta": 0},
+            {"result": "Our colonys engineers go on strike and the production slows down", "research_delta": 0,  "happiness_delta": 0, "production_delta": -RESOURCE_DELTA},
+            {"result": "BBQ day increases heavily the consumption, people are unhappy", "research_delta": 0,  "happiness_delta": -RESOURCE_DELTA, "production_delta": 0},
+            {"result": "Our scientists are ill because bad chemicals leaked in the lab", "research_delta": -RESOURCE_DELTA,  "happiness_delta": 0, "production_delta": 0},
+            {"result": "Severe pests spread throughout the colony, we need immediate action", "research_delta": 0,  "happiness_delta": -RESOURCE_DELTA, "production_delta": 0},
+            {"result": "Recent rainfalls improved the agricultural production, people are very happy with the abundance of food", "research_delta": 0,  "happiness_delta": 0, "production_delta": RESOURCE_DELTA},
+            {"result": "Our researchers just discovered a new resource that can be eaten", "research_delta": RESOURCE_DELTA,  "happiness_delta": RESOURCE_DELTA, "production_delta": RESOURCE_DELTA},
+            {"result": "Thanks to a new discovery, our colony uses less energy", "research_delta": -RESOURCE_DELTA,  "happiness_delta": RESOURCE_DELTA, "production_delta": 0},
         ]
         return event_list[random.randint(0,7)]
 
@@ -65,7 +66,7 @@ class Main:
                     self.too_fast = False
                     self.research = self.research - 1
                     self.happiness = self.happiness - 1
-                    self.prodcution = self.prodcution - 1
+                    self.production = self.production - 1
 
                 if not self.too_fast and self.wg.hit_wire():
                     self.research = self.research - 10
@@ -80,7 +81,7 @@ class Main:
                     self.result = random_result["result"]
                     self.research = self.research + random_result["research_delta"]
                     self.happiness = self.happiness + random_result["happiness_delta"]
-                    self.prodcution = self.prodcution + random_result["prodcution_delta"]
+                    self.production = self.production + random_result["production_delta"]
 
             else:
                 self.result = "You lose"

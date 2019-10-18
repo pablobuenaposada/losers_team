@@ -1,5 +1,6 @@
 import threading
 import time
+from losers.wiregame import WireGame
 
 INIT_TIME = 10
 INIT_RESEARCH = 100
@@ -20,6 +21,11 @@ class Main:
     last_time = 0
     restart_time = 0
 
+    too_fast = False
+
+    #games
+    wg = WireGame()
+
     def __init__(self):
         t = threading.Thread(target=self.main)
         t.start()
@@ -34,9 +40,19 @@ class Main:
             if self.time > 0:
                 if self.second_passed():
                     self.time = self.time - 1
-
+                    self.too_fast = False
+                    
                     self.research = self.research - 1
                     self.happiness = self.happiness - 1
+                    
+                if not self.too_fast and self.wg.hit_wire():
+                    self.research = self.research - 10
+                    self.too_fast = True
+
+                if not self.too_fast and self.wg.hit_end():
+                    self.research = self.research + 50
+                    self.too_fast = True
+                    
 
             else:
                 self.result = "You lose"

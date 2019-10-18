@@ -6,7 +6,7 @@ from time import sleep
 
 class ServoGame:
 
-    def __init__():
+    def __init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(4, GPIO.OUT)

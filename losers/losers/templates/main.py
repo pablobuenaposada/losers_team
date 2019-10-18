@@ -8,11 +8,16 @@ RESTART_WAITING_TIME = 2
 
 
 class Main:
+    # resources
     happiness = INIT_HAPPINESS
     research = INIT_RESEARCH
+
+    # result message
+    result = ""
+
+    # time things
     time = INIT_TIME
     last_time = 0
-    result = ""
     restart_time = 0
 
     def __init__(self):

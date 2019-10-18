@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+
+from losers import views
+
+from losers import settings
+
+from losers.templates.main import Main
+
+main = Main()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('index', views.index, {'main': main}, name='index'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
